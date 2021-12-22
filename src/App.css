@@ -1,0 +1,11 @@
+.app-header {
+  display: flex;
+  justify-content: center;
+
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.main-container {
+  margin: 1rem 0;
+}
