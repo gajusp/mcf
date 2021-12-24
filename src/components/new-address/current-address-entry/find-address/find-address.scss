@@ -1,0 +1,17 @@
+.find-address-content {
+  .enter-postcode {
+    display: flex;
+    justify-content: left;
+  }
+
+  .form-control {
+    width: 50%;
+    margin-right: 2rem;
+  }
+
+  .find-address-btn {
+    width: 40%;
+    color: #fff;
+    background-color: #015c31;
+  }
+}

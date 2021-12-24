@@ -1,0 +1,28 @@
+.app-container {
+  display: block;
+  margin: 1.5rem auto 0;
+  border-top: solid 1px #c7c8ca;
+  border-bottom: solid 1px #c7c8ca;
+  background: #fff;
+}
+
+.container-content {
+  padding: 2rem 2rem;
+  box-shadow: 2px 4px 9px 5px #c7c7c7;
+}
+
+@media (min-width: 980px) {
+  .app-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    margin: 0.5rem * 3 auto 0;
+    border-right: #c7c8ca;
+    border-left: #c7c8ca;
+    width: calc(100% - 2rem);
+    max-width: 70rem;
+  }
+}
