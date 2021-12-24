@@ -13,6 +13,8 @@
     &::placeholder {
       font-size: 15px;
       color: #979797;
+
+      text-transform: initial;
     }
 
     &:focus {
@@ -44,4 +46,21 @@ select.form-control {
   &::-ms-expand {
     display: none;
   }
+}
+
+// input placeholder text-transform
+::-webkit-input-placeholder {
+  text-transform: initial;
+}
+
+:-moz-placeholder {
+  text-transform: initial;
+}
+
+::-moz-placeholder {
+  text-transform: initial;
+}
+
+:-ms-input-placeholder {
+  text-transform: initial;
 }

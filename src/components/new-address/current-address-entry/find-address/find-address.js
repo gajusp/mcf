@@ -28,7 +28,7 @@ const FindAddress = (props) => {
 
       <form onSubmit={onFindAddress.bind(this)}>
         <div className='enter-postcode mb-2'>
-          <input type='text' placeholder='Enter postcode' className='form-control ' ref={postcodeRef} onChange={postcodeChange.bind(this)}></input>
+          <input type='text' placeholder='Enter postcode' className='form-control all-caps' ref={postcodeRef} onChange={postcodeChange.bind(this)}></input>
 
           <button type='submit' className='btn primary find-address-btn'>
             Find address
