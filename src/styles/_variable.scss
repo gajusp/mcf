@@ -1,3 +1,32 @@
 @import './mixins';
 
-// $btn-color:
+$white: #fff;
+$black: #000;
+
+$error-color: #9f0606;
+
+$button-width: 100%;
+$button-height: 3rem;
+$button-font-size: 1.125rem;
+
+$button-default-color: #d7d7d7;
+$button-link-color: #024224;
+$button-color: #015c31;
+$button-disable-color: #c7c8ca;
+$button-border-radius: 0.3125rem;
+
+$button-border-color: rgb(55, 55, 55);
+
+$button-color-one: #a5a5a5;
+$button-color-two: #a9a9a9;
+
+$technical-color-one: #0861e7;
+
+$bg-layer-color: rgb(168, 169, 168);
+
+$spacer: 0.5rem;
+
+$modal-header-color: #015c31;
+
+$container-box-color: #c7c7c7;
+$container-border-color: #c7c8ca;

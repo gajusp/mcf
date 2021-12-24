@@ -5,7 +5,9 @@ import YourCurrentAddress from './components/your-current-address/your-current-a
 function App() {
   return (
     <div>
-      <header className='app-header'>My Community Finance - Address component test</header>
+      <div className='app-header'>
+        <header>My Community Finance - Address component test</header>
+      </div>
 
       <div className='main-container'>
         <AppContainer>

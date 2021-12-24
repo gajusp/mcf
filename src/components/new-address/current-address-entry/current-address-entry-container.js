@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 
-import './current-address-entry-container.scss';
+import { ERROR_MESSAGE_CONSTANT } from '../../../constants/error-message.constant';
+import AddressService from '../../../services/address.service';
 import FindAddress from './find-address/find-address';
 import ManualAddress from './manual-address/manual-address';
 import MultipleAddress from './multiple-address/multiple-address';
-import AddressService from '../../../services/address.service';
-import { ERROR_MESSAGE_CONSTANT } from '../../../constants/error-message.constant';
-
-// const initialValue = {
-//   toggleFindMultipleAddress: true,
-//   toggleManualAddress: false,
-//   submitting: false,
-//   data: {},
-// };
 
 const CurrentAddressEntry = (props) => {
   let lastOpenAddressComp = '';
@@ -57,8 +49,6 @@ const CurrentAddressEntry = (props) => {
   };
 
   const submitAddress = (value) => {
-    console.log('CurrentAddressEntry - toggleAddressComp', value);
-
     let addressOb = {
       flatNumber: '',
       buildingNumber: '',
@@ -69,15 +59,45 @@ const CurrentAddressEntry = (props) => {
     };
 
     if (typeof value === 'string') {
-      addressOb = { ...addressOb, ...{ buildingName: value, street: addressList?.address?.address1, town: addressList?.address?.town, postcode: addressList?.address?.postcode } };
+      addressOb = {
+        ...addressOb,
+        ...{
+          buildingName: value,
+          street: addressList?.address?.address1,
+          town: addressList?.address?.town,
+          postcode: addressList?.address?.postcode,
+        },
+      };
     } else {
-      addressOb = { ...addressOb, ...value };
+      addressOb = value;
     }
 
     props.submitAddress(addressOb);
   };
 
-  return <div>{!toggleManualAddress ? toggleFindMultipleAddress && lastOpenAddressComp !== 'findAddress' ? <FindAddress toggleAddressComp={toggleAddressComp} toggleManualAddressComp={toggleManualAddressComp} errorMessage={errorMessage} /> : <MultipleAddress addressList={addressList} postcodeValue={postcodeValue} toggleAddressComp={toggleAddressComp} toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} /> : <ManualAddress toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} />}</div>;
+  return (
+    <div>
+      {!toggleManualAddress ? (
+        toggleFindMultipleAddress && lastOpenAddressComp !== 'findAddress' ? (
+          <FindAddress
+            toggleAddressComp={toggleAddressComp}
+            toggleManualAddressComp={toggleManualAddressComp}
+            errorMessage={errorMessage}
+          />
+        ) : (
+          <MultipleAddress
+            addressList={addressList}
+            postcodeValue={postcodeValue}
+            toggleAddressComp={toggleAddressComp}
+            toggleManualAddressComp={toggleManualAddressComp}
+            submitAddress={submitAddress}
+          />
+        )
+      ) : (
+        <ManualAddress toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} />
+      )}
+    </div>
+  );
 };
 
 export default CurrentAddressEntry;

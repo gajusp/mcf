@@ -1,10 +1,12 @@
+@import '../../../styles/variable';
+
 .modal-content {
   box-shadow: 2px 4px 9px 5px #898989;
 }
 
 .modal-header {
   background: #7fbb9e;
-  color: #015c31;
+  color: $modal-header-color;
   height: 50px;
 }
 

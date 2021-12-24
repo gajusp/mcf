@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.1.3",
     "formik": "^2.2.9",
+    "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.4",
     "react-dom": "^17.0.2",
@@ -18,13 +19,34 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "semi": "error",
+      "no-console": "warn",
+      "no-undef": [
+        1
+      ],
+      "quotes": [
+        1,
+        "single",
+        "avoid-escape"
+      ],
+      "react/prefer-es6-class": 0,
+      "no-shadow": [
+        1
+      ]
+    }
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "browserslist": {
     "production": [
@@ -39,6 +61,8 @@
     ]
   },
   "devDependencies": {
+    "prettier": "2.5.1",
+    "pretty-quick": "^3.1.3",
     "sass": "^1.45.1"
   }
 }

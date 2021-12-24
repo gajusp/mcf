@@ -4,14 +4,30 @@
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+@import './styles/button';
+@import './styles/forms';
+
+.pos-center-content {
+  display: flex;
+  justify-content: center;
+}
+
 .app-header {
   display: flex;
   justify-content: center;
 
   font-size: 2rem;
   font-weight: bold;
+
+  @include phone-only {
+    padding: 0 2rem;
+  }
 }
 
 .main-container {
   margin: 1rem 0;
+}
+
+.all-caps {
+  text-transform: uppercase;
 }
