@@ -15,7 +15,11 @@ const createRequestOptions = (url, method, headers) => {
 
 const getAllAddress = async (postcode) => {
   try {
-    const getAddressRequestOptions = createRequestOptions(`${API_ENDPOINT_CONSTANTS.API_BASE_URL}${API_ENDPOINT_CONSTANTS.GET_ADDRESS_URL}?postcode=${postcode}`, 'GET', { 'content-type': 'application/json' });
+    const getAddressRequestOptions = createRequestOptions(
+      `${API_ENDPOINT_CONSTANTS.API_BASE_URL}${API_ENDPOINT_CONSTANTS.GET_ADDRESS_URL}?postcode=${postcode}`,
+      'GET',
+      { 'content-type': 'application/json' }
+    );
     const addressResponse = await fetch(...getAddressRequestOptions);
     let addressData = await addressResponse.json();
     if (addressResponse.ok && !addressData?.address?.errorMessage) {
@@ -26,8 +30,6 @@ const getAllAddress = async (postcode) => {
       return addressData;
     }
   } catch (error) {
-    console.error(`There is an error occurred while fetching the address. Please try again. ${error.message || ''}`);
-
     return { errorMessage: 'There is an error occurred while fetching the address. Please try again' };
   }
 };

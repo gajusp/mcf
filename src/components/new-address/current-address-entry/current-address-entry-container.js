@@ -49,8 +49,6 @@ const CurrentAddressEntry = (props) => {
   };
 
   const submitAddress = (value) => {
-    console.log('CurrentAddressEntry - toggleAddressComp', value);
-
     let addressOb = {
       flatNumber: '',
       buildingNumber: '',
@@ -61,7 +59,15 @@ const CurrentAddressEntry = (props) => {
     };
 
     if (typeof value === 'string') {
-      addressOb = { ...addressOb, ...{ buildingName: value, street: addressList?.address?.address1, town: addressList?.address?.town, postcode: addressList?.address?.postcode } };
+      addressOb = {
+        ...addressOb,
+        ...{
+          buildingName: value,
+          street: addressList?.address?.address1,
+          town: addressList?.address?.town,
+          postcode: addressList?.address?.postcode,
+        },
+      };
     } else {
       addressOb = value;
     }
@@ -69,7 +75,29 @@ const CurrentAddressEntry = (props) => {
     props.submitAddress(addressOb);
   };
 
-  return <div>{!toggleManualAddress ? toggleFindMultipleAddress && lastOpenAddressComp !== 'findAddress' ? <FindAddress toggleAddressComp={toggleAddressComp} toggleManualAddressComp={toggleManualAddressComp} errorMessage={errorMessage} /> : <MultipleAddress addressList={addressList} postcodeValue={postcodeValue} toggleAddressComp={toggleAddressComp} toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} /> : <ManualAddress toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} />}</div>;
+  return (
+    <div>
+      {!toggleManualAddress ? (
+        toggleFindMultipleAddress && lastOpenAddressComp !== 'findAddress' ? (
+          <FindAddress
+            toggleAddressComp={toggleAddressComp}
+            toggleManualAddressComp={toggleManualAddressComp}
+            errorMessage={errorMessage}
+          />
+        ) : (
+          <MultipleAddress
+            addressList={addressList}
+            postcodeValue={postcodeValue}
+            toggleAddressComp={toggleAddressComp}
+            toggleManualAddressComp={toggleManualAddressComp}
+            submitAddress={submitAddress}
+          />
+        )
+      ) : (
+        <ManualAddress toggleManualAddressComp={toggleManualAddressComp} submitAddress={submitAddress} />
+      )}
+    </div>
+  );
 };
 
 export default CurrentAddressEntry;
