@@ -69,7 +69,15 @@ const ManualAddress = (props) => {
 
       <div className="form-group">
         <label htmlFor="buildingNumber">Building Number</label>
-        <input id="buildingNumber" name="buildingNumber" type="text" className="form-control" />
+        <input
+          id="buildingNumber"
+          name="buildingNumber"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.buildingNumber}
+        />
       </div>
 
       <div className="form-group">
@@ -88,7 +96,15 @@ const ManualAddress = (props) => {
 
       <div className="form-group">
         <label htmlFor="street">Street</label>
-        <input id="street" name="street" type="text" className="form-control" />
+        <input
+          id="street"
+          name="street"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.street}
+        />
       </div>
 
       <div className="form-group">

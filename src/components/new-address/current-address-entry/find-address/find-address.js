@@ -21,16 +21,22 @@ const FindAddress = (props) => {
   };
 
   return (
-    <div className='find-address-content'>
+    <div className="find-address-content">
       <strong>
-        <label className='mb-2'>What's your current address?</label>
+        <label className="mb-2">What's your current address?</label>
       </strong>
 
       <form onSubmit={onFindAddress.bind(this)}>
-        <div className='enter-postcode mb-2'>
-          <input type='text' placeholder='Enter postcode' className='form-control all-caps' ref={postcodeRef} onChange={postcodeChange.bind(this)}></input>
+        <div className="enter-postcode mb-2">
+          <input
+            type="text"
+            placeholder="Enter postcode"
+            className="form-control all-caps"
+            ref={postcodeRef}
+            onChange={postcodeChange.bind(this)}
+          ></input>
 
-          <button type='submit' className='btn primary find-address-btn'>
+          <button type="submit" className="btn primary find-address-btn">
             Find address
           </button>
         </div>
@@ -38,7 +44,7 @@ const FindAddress = (props) => {
         {props.errorMessage ? <ErrorMessage>{props.errorMessage}</ErrorMessage> : ''}
       </form>
 
-      <button className='btn btn-green-link' onClick={props.toggleManualAddressComp}>
+      <button className="btn btn-green-link" onClick={props.toggleManualAddressComp}>
         Enter address manually
       </button>
     </div>
