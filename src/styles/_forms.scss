@@ -1,3 +1,5 @@
+@import '../styles/variable';
+
 .form-group {
   margin-bottom: 0.8rem;
 
@@ -17,19 +19,12 @@
       border-width: 2px;
       box-shadow: none;
     }
-
-    &:disabled,
-    &[readonly] {
-      opacity: 0.5;
-      background-color: #fff;
-      box-shadow: none;
-    }
   }
 }
 
 .error-message {
-  color: rgb(159, 6, 6);
-  padding-bottom: 0.8rem;
+  color: $error-color;
+  padding-bottom: 0.5rem;
 }
 
 select.form-control {
@@ -39,7 +34,7 @@ select.form-control {
 
   font-size: 15px;
 
-  background: #fff url('../assets/drop-down.svg') no-repeat right 20px center;
+  background: $white url('../assets/drop-down.svg') no-repeat right 20px center;
   background-size: 14px 8px;
 
   white-space: nowrap;

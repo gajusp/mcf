@@ -1,28 +1,26 @@
+@import '../../styles/variable';
+
 .app-container {
   display: block;
-  margin: 1.5rem auto 0;
-  border-top: solid 1px #c7c8ca;
-  border-bottom: solid 1px #c7c8ca;
-  background: #fff;
+  margin-top: $spacer * 3;
+  border-top: solid 1px $container-border-color;
+  border-bottom: solid 1px $container-border-color;
+  background: $white;
+
+  @include desktop {
+    width: 100%;
+  }
+
+  @include tablet {
+    margin: 0.5rem * 3 auto 0;
+    border-right: $container-border-color;
+    border-left: $container-border-color;
+    width: calc(100% - 2rem);
+    max-width: 70rem;
+  }
 }
 
 .container-content {
   padding: 2rem 2rem;
-  box-shadow: 2px 4px 9px 5px #c7c7c7;
-}
-
-@media (min-width: 980px) {
-  .app-container {
-    width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .app-container {
-    margin: 0.5rem * 3 auto 0;
-    border-right: #c7c8ca;
-    border-left: #c7c8ca;
-    width: calc(100% - 2rem);
-    max-width: 70rem;
-  }
+  box-shadow: 2px 4px 9px 5px $container-box-color;
 }

@@ -1,9 +1,9 @@
-import React from 'react';
 import { useFormik } from 'formik';
-import ErrorMessage from '../../../error-message/error-message';
+import React from 'react';
 
-import './manual-address.scss';
 import { ERROR_MESSAGE_CONSTANT } from '../../../../constants/error-message.constant';
+import ErrorMessage from '../../../error-message/error-message';
+import './manual-address.scss';
 
 const ManualAddress = (props) => {
   const validate = (values) => {
@@ -24,7 +24,7 @@ const ManualAddress = (props) => {
     if (!values.town) {
       errors.town = ERROR_MESSAGE_CONSTANT.TOWN_REQUIRED;
     } else if (values.town.length < 2) {
-      errors.town = ERROR_MESSAGE_CONSTANT.POSTCODE_INVALID;
+      errors.town = ERROR_MESSAGE_CONSTANT.TOWN_INVALID;
     }
 
     if (!values.postcode) {
@@ -35,16 +35,6 @@ const ManualAddress = (props) => {
 
     return errors;
   };
-
-  // const onSubmitAddress = (event) => {
-  //   event.preventDefault();
-
-  //   // const address = { flatNumber: flatNumberRef?.current?.value, buildingNumber: buildingNumberRef?.current?.value, buildingName: buildingNameRef?.current?.value, street: streetRef?.current?.value, town: townRef?.current?.value, postcode: postcodeRef?.current?.value };
-
-  //   // console.log(address);
-
-  //   props.submitAddress({});
-  // };
 
   const formik = useFormik({
     initialValues: {
@@ -100,10 +90,10 @@ const ManualAddress = (props) => {
       </div>
 
       <div className='action-btn'>
-        <button type='submit' className='submit-address-btn'>
+        <button type='submit' className='btn primary submit-address-btn'>
           Submit
         </button>
-        <button type='submit' className='cancel-address-btn' onClick={props.toggleManualAddressComp}>
+        <button type='submit' className='btn secondary cancel-address-btn' onClick={props.toggleManualAddressComp}>
           Cancel
         </button>
       </div>

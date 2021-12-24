@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import AddressModal from '../new-address/address-modal/address-modal';
 
-import './your-current-address.scss';
-
 const YourCurrentAddress = () => {
   const [showModal, setShowModal] = useState(false);
   const [addressObj, setAddressObj] = useState(null);
@@ -17,9 +15,9 @@ const YourCurrentAddress = () => {
   };
 
   return (
-    <div className='your-address-container'>
+    <div>
       {addressObj && addressObj?.buildingName ? (
-        <div>
+        <div className='all-caps'>
           <div>{addressObj?.flatNumber || addressObj?.buildingName || ''}</div>
           <div>{addressObj?.street || ''} </div>
           <div>{addressObj?.town || ''} </div>
@@ -36,7 +34,7 @@ const YourCurrentAddress = () => {
 
       <div className='mb-4'>Moved in: 2018-01-10</div>
 
-      <button type='button' className='btn btn-link not-my-current-address' onClick={onAddressPopup}>
+      <button type='button' className='btn btn-link' onClick={onAddressPopup}>
         This is not my current address
       </button>
 

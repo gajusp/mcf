@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ErrorMessage from '../../../error-message/error-message';
-import { ERROR_MESSAGE_CONSTANT } from '../../../../constants/error-message.constant';
 
+import { ERROR_MESSAGE_CONSTANT } from '../../../../constants/error-message.constant';
+import ErrorMessage from '../../../error-message/error-message';
 import './multiple-address.scss';
 
 const MultipleAddress = (props) => {
@@ -28,17 +28,21 @@ const MultipleAddress = (props) => {
 
   return (
     <div className='multiple-address-content'>
-      <div className='postcode-content mb-4'>
+      <strong>
+        <label className='mb-2'>What's your current address?</label>
+      </strong>
+
+      <div className='postcode-content mt-3 mb-4'>
         <div className='title-postcode'>
           <div>
             <strong>Postcode</strong>
           </div>
-          <div className='postcode'>
+          <div className='postcode all-caps'>
             <strong>{props.postcodeValue}</strong>
           </div>
         </div>
         <div className='change-btn'>
-          <button className='btn btn-link btn-link-color' onClick={props.toggleAddressComp}>
+          <button className='btn btn-green-link' onClick={props.toggleAddressComp}>
             Change
           </button>
         </div>
@@ -59,13 +63,13 @@ const MultipleAddress = (props) => {
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : ''}
 
       <div className='mb-3'>
-        <button className='btn btn-link btn-link-color ' onClick={props.toggleManualAddressComp}>
+        <button className='btn btn-green-link ' onClick={props.toggleManualAddressComp}>
           I can't find my address in the list
         </button>
       </div>
 
       <div className='mb-2'>
-        <button className='btn save-btn' onClick={onSubmitAddress}>
+        <button className='btn primary' onClick={onSubmitAddress}>
           Save
         </button>
       </div>

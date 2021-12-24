@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+
 import CurrentAddressEntry from '../current-address-entry/current-address-entry-container';
 import './address-modal.scss';
 
