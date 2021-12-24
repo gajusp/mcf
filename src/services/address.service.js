@@ -1,6 +1,6 @@
-import { REQUEST_HEADERS } from '../constants/request-interceptor.constants';
 import { API_ENDPOINT_CONSTANTS } from '../constants/api-endpoint.constants';
 import { ERROR_MESSAGE_CONSTANT } from '../constants/error-message.constant';
+import { REQUEST_HEADERS } from '../constants/request-interceptor.constants';
 
 const createRequestOptions = (url, method, headers) => {
   let payload = [

@@ -16,9 +16,12 @@ const YourCurrentAddress = () => {
 
   return (
     <div>
-      {addressObj && addressObj?.buildingName ? (
-        <div className='all-caps'>
-          <div>{addressObj?.flatNumber || addressObj?.buildingName || ''}</div>
+      {addressObj && addressObj?.postcode ? (
+        <div className="all-caps">
+          <div>
+            {addressObj?.flatNumber || ''} {addressObj?.buildingNumber || ''}
+          </div>
+          <div>{addressObj?.buildingName || ''} </div>
           <div>{addressObj?.street || ''} </div>
           <div>{addressObj?.town || ''} </div>
           <div>{addressObj?.postcode || ''} </div>
@@ -32,9 +35,9 @@ const YourCurrentAddress = () => {
         </div>
       )}
 
-      <div className='mb-4'>Moved in: 2018-01-10</div>
+      <div className="mb-4">Moved in: 2018-01-10</div>
 
-      <button type='button' className='btn btn-link' onClick={onAddressPopup}>
+      <button type="button" className="btn btn-link" onClick={onAddressPopup}>
         This is not my current address
       </button>
 

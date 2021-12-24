@@ -27,28 +27,28 @@ const MultipleAddress = (props) => {
   };
 
   return (
-    <div className='multiple-address-content'>
+    <div className="multiple-address-content">
       <strong>
-        <label className='mb-2'>What's your current address?</label>
+        <label className="mb-2">What's your current address?</label>
       </strong>
 
-      <div className='postcode-content mt-3 mb-4'>
-        <div className='title-postcode'>
+      <div className="postcode-content mt-3 mb-4">
+        <div className="title-postcode">
           <div>
             <strong>Postcode</strong>
           </div>
-          <div className='postcode all-caps'>
+          <div className="postcode all-caps">
             <strong>{props.postcodeValue}</strong>
           </div>
         </div>
-        <div className='change-btn'>
-          <button className='btn btn-green-link' onClick={props.toggleAddressComp}>
+        <div className="change-btn">
+          <button className="btn btn-green-link" onClick={props.toggleAddressComp}>
             Change
           </button>
         </div>
       </div>
 
-      <select className='form-control mb-2' onChange={onAddressChange}>
+      <select className="form-control mb-2" onChange={onAddressChange}>
         <option>Select your address</option>
         {props.addressList?.possibleMatches?.length > 0 &&
           props.addressList?.possibleMatches.map((addressData, index) => {
@@ -62,14 +62,14 @@ const MultipleAddress = (props) => {
 
       {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : ''}
 
-      <div className='mb-3'>
-        <button className='btn btn-green-link ' onClick={props.toggleManualAddressComp}>
+      <div className="mb-3">
+        <button className="btn btn-green-link " onClick={props.toggleManualAddressComp}>
           I can't find my address in the list
         </button>
       </div>
 
-      <div className='mb-2'>
-        <button className='btn primary' onClick={onSubmitAddress}>
+      <div className="mb-2">
+        <button className="btn primary" onClick={onSubmitAddress}>
           Save
         </button>
       </div>
