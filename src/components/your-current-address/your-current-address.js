@@ -9,8 +9,6 @@ const YourCurrentAddress = () => {
   const [addressObj, setAddressObj] = useState(null);
 
   const onAddressPopup = (selectedAddress) => {
-    console.log('YourCurrentAddress ---> onAddressPopup--- ', selectedAddress);
-
     if (selectedAddress?.postcode) {
       setAddressObj(selectedAddress);
     }

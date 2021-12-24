@@ -5,8 +5,6 @@ import './address-modal.scss';
 
 const AddressModal = (props) => {
   const submitAddress = (value) => {
-    console.log('AddressModal ---> submitAddress --- ', value);
-
     props.closePopupEvent(value);
   };
   return (

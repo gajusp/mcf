@@ -1,55 +1,102 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { useFormik } from 'formik';
+import ErrorMessage from '../../../error-message/error-message';
 
 import './manual-address.scss';
+import { ERROR_MESSAGE_CONSTANT } from '../../../../constants/error-message.constant';
 
 const ManualAddress = (props) => {
-  const flatNumberRef = useRef(null);
-  const buildingNumberRef = useRef(null);
-  const buildingNameRef = useRef(null);
-  const streetRef = useRef(null);
-  const townRef = useRef(null);
-  const postcodeRef = useRef(null);
+  const validate = (values) => {
+    const errors = {};
 
-  const onSubmitAddress = (event) => {
-    event.preventDefault();
+    if (!values.flatNumber) {
+      errors.flatNumber = ERROR_MESSAGE_CONSTANT.FLAT_NUM_REQUIRED;
+    } else if (values.flatNumber.length < 2) {
+      errors.flatNumber = ERROR_MESSAGE_CONSTANT.FLAT_NUM_INVALID;
+    }
 
-    const address = { flatNumber: flatNumberRef?.current?.value, buildingNumber: buildingNumberRef?.current?.value, buildingName: buildingNameRef?.current?.value, street: streetRef?.current?.value, town: townRef?.current?.value, postcode: postcodeRef?.current?.value };
+    if (!values.buildingName) {
+      errors.buildingName = ERROR_MESSAGE_CONSTANT.BUILDING_NAME_REQUIRED;
+    } else if (values.buildingName.length < 2) {
+      errors.buildingName = ERROR_MESSAGE_CONSTANT.BUILDING_NAME_INVALID;
+    }
 
-    console.log(address);
+    if (!values.town) {
+      errors.town = ERROR_MESSAGE_CONSTANT.TOWN_REQUIRED;
+    } else if (values.town.length < 2) {
+      errors.town = ERROR_MESSAGE_CONSTANT.POSTCODE_INVALID;
+    }
 
-    props.submitAddress(address);
+    if (!values.postcode) {
+      errors.postcode = ERROR_MESSAGE_CONSTANT.POSTCODE_REQUIRED;
+    } else if (values.postcode.length < 3) {
+      errors.postcode = ERROR_MESSAGE_CONSTANT.POSTCODE_INVALID;
+    }
+
+    return errors;
   };
 
+  // const onSubmitAddress = (event) => {
+  //   event.preventDefault();
+
+  //   // const address = { flatNumber: flatNumberRef?.current?.value, buildingNumber: buildingNumberRef?.current?.value, buildingName: buildingNameRef?.current?.value, street: streetRef?.current?.value, town: townRef?.current?.value, postcode: postcodeRef?.current?.value };
+
+  //   // console.log(address);
+
+  //   props.submitAddress({});
+  // };
+
+  const formik = useFormik({
+    initialValues: {
+      flatNumber: '',
+      buildingNumber: '',
+      buildingName: '',
+      street: '',
+      town: '',
+      postcode: '',
+    },
+    validate,
+    onSubmit: (value) => {
+      console.log(value);
+
+      props.submitAddress(value);
+    },
+  });
+
   return (
-    <form onSubmit={onSubmitAddress.bind(this)}>
+    <form onSubmit={formik.handleSubmit}>
       <div className='form-group'>
         <label htmlFor='flatNumber'>Flat Number</label>
-        <input id='flatNumber' name='flatNumber' ref={flatNumberRef} type='text' className='form-control' required />
+        <input id='flatNumber' name='flatNumber' type='text' className='form-control' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.flatNumber} />
+        {formik.touched.flatNumber && formik.errors.flatNumber ? <ErrorMessage>{formik.errors.flatNumber}</ErrorMessage> : ''}
       </div>
 
       <div className='form-group'>
         <label htmlFor='buildingNumber'>Building Number</label>
-        <input id='buildingNumber' name='buildingNumber' ref={buildingNumberRef} type='text' className='form-control' required />
+        <input id='buildingNumber' name='buildingNumber' type='text' className='form-control' />
       </div>
 
       <div className='form-group'>
         <label htmlFor='buildingName'>Building Name</label>
-        <input id='buildingName' name='buildingName' ref={buildingNameRef} type='text' className='form-control' required />
+        <input id='buildingName' name='buildingName' type='text' className='form-control' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.buildingName} />
+        {formik.touched.buildingName && formik.errors.buildingName ? <ErrorMessage>{formik.errors.buildingName}</ErrorMessage> : ''}
       </div>
 
       <div className='form-group'>
         <label htmlFor='street'>Street</label>
-        <input id='street' name='street' ref={streetRef} type='text' className='form-control' />
+        <input id='street' name='street' type='text' className='form-control' />
       </div>
 
       <div className='form-group'>
         <label htmlFor='town'>Town</label>
-        <input id='town' name='town' ref={townRef} type='text' className='form-control' required />
+        <input id='town' name='town' type='text' className='form-control' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.town} />
+        {formik.touched.town && formik.errors.town ? <ErrorMessage>{formik.errors.town}</ErrorMessage> : ''}
       </div>
 
       <div className='form-group'>
         <label htmlFor='postcode'>Postcode</label>
-        <input id='postcode' name='postcode' ref={postcodeRef} type='text' className='form-control' required />
+        <input id='postcode' name='postcode' type='text' className='form-control' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.postcode} />
+        {formik.touched.postcode && formik.errors.postcode ? <ErrorMessage>{formik.errors.postcode}</ErrorMessage> : ''}
       </div>
 
       <div className='action-btn'>

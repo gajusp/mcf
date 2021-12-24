@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import ErrorMessage from '../../../error-message/error-message';
 import './find-address.scss';
 
 const FindAddress = (props) => {
-  let postcodeValue;
+  const [postcodeValue, setPostcodeValue] = useState(null);
+
+  const postcodeRef = useRef(null);
 
   const onFindAddress = (event) => {
     event.preventDefault();
@@ -11,8 +14,9 @@ const FindAddress = (props) => {
   };
 
   const postcodeChange = (event) => {
-    console.log(event.target.value);
-    postcodeValue = event.target.value;
+    setPostcodeValue(postcodeRef?.current?.value);
+
+    // postcodeValue = event.target.value;
   };
 
   return (
@@ -23,13 +27,14 @@ const FindAddress = (props) => {
 
       <form onSubmit={onFindAddress.bind(this)}>
         <div className='enter-postcode mb-2'>
-          <input type='text' placeholder='Enter postcode' className='form-control' onChange={postcodeChange.bind(this)} required></input>
-          {/* <span style={{ color: "red" }}></span> */}
+          <input type='text' placeholder='Enter postcode' className='form-control' ref={postcodeRef} onChange={postcodeChange.bind(this)}></input>
 
           <button type='submit' className='find-address-btn'>
             Find address
           </button>
         </div>
+
+        {props.errorMessage ? <ErrorMessage>{props.errorMessage}</ErrorMessage> : ''}
       </form>
 
       <button className='btn btn-link btn-link-color' onClick={props.toggleManualAddressComp}>

@@ -13,10 +13,6 @@
       color: #979797;
     }
 
-    // &.ng-invalid.ng-touched:not(:disabled):not([readonly]) {
-    //   border: solid 2px rgb(144, 6, 6);
-    // }
-
     &:focus {
       border-width: 2px;
       box-shadow: none;
@@ -29,6 +25,11 @@
       box-shadow: none;
     }
   }
+}
+
+.error-message {
+  color: rgb(159, 6, 6);
+  padding-bottom: 0.8rem;
 }
 
 select.form-control {

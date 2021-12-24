@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
+import ErrorMessage from '../../../error-message/error-message';
+import { ERROR_MESSAGE_CONSTANT } from '../../../../constants/error-message.constant';
 
 import './multiple-address.scss';
 
 const MultipleAddress = (props) => {
-  console.log('MultipleAddress --->>> ', props);
-
   const [selectedAddress, setSelectedAddress] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const onSelectedAddress = (event) => {
+  const onAddressChange = (event) => {
     setSelectedAddress(event.target.value);
+
+    setErrorMessage(null);
+  };
+
+  const onSubmitAddress = (event) => {
+    event.preventDefault();
+
+    if (!selectedAddress || selectedAddress === 'Select your address') {
+      setErrorMessage(ERROR_MESSAGE_CONSTANT.SELECT_ADDRESS_REQUIRED);
+
+      return;
+    }
+
+    props.submitAddress(selectedAddress);
   };
 
   return (
@@ -29,16 +44,19 @@ const MultipleAddress = (props) => {
         </div>
       </div>
 
-      <select className='form-control mb-4' onChange={onSelectedAddress}>
+      <select className='form-control mb-2' onChange={onAddressChange}>
         <option>Select your address</option>
-        {props.addressList?.possibleMatches.map((addressData, index) => {
-          return (
-            <option key={index} value={addressData.buildingName}>
-              {addressData.buildingName}
-            </option>
-          );
-        })}
+        {props.addressList?.possibleMatches?.length > 0 &&
+          props.addressList?.possibleMatches.map((addressData, index) => {
+            return (
+              <option key={index} value={addressData.buildingName}>
+                {addressData.buildingName}
+              </option>
+            );
+          })}
       </select>
+
+      {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : ''}
 
       <div className='mb-3'>
         <button className='btn btn-link btn-link-color ' onClick={props.toggleManualAddressComp}>
@@ -47,7 +65,7 @@ const MultipleAddress = (props) => {
       </div>
 
       <div className='mb-2'>
-        <button className='btn save-btn' onClick={props.submitAddress.bind(this, selectedAddress)}>
+        <button className='btn save-btn' onClick={onSubmitAddress}>
           Save
         </button>
       </div>
