@@ -9,7 +9,7 @@ Clone this project repository to your local machine
 
 ## change into the repo directory
 
-`cd origin-markets`
+`cd mcf`
 
 ## npm package install
 
